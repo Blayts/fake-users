@@ -1,0 +1,53 @@
+#root {
+    height: 100%;
+    text-align: center;
+}
+
+.ant-form-item .ant-form-item-label {
+    text-align: start;
+}
+
+.ant-spin-nested-loading >div>.ant-spin {
+    max-height: none;
+}
+
+.ant-spin-nested-loading,
+.ant-spin-container,
+.ant-table,
+.ant-table-wrapper {
+    height: inherit;
+}
+
+.ant-table {
+    height: calc(100% - 64px);
+    overflow: auto;
+}
+
+.main-box {
+    align-items: center;
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    width: 100%;
+}
+
+.full-h {
+    height: 100%;
+}
+
+.full-w {
+    width: 100%;
+}
+
+.wrapper-user {
+    align-items: center;
+    background: lightgray; 
+    border-radius: 5px;
+    box-shadow: 2px 2px 8px rgb(70, 68, 68);
+    display: flex;
+    font-size: 64px; 
+    justify-content: center;
+    padding: 40px 10px;
+    height: 140px; 
+    width: 140px;
+}
