@@ -1,7 +1,7 @@
-import { Button, FloatButton, Table } from 'antd';
+import { notification, Button, FloatButton, Table } from 'antd';
 import type { TableColumnProps, TableProps } from 'antd';
-import { useCallback } from 'react';
-import { useNavigate, useLoaderData, useSubmit } from 'react-router';
+import { useCallback, useRef } from 'react';
+import { useNavigate, useNavigation, useLoaderData, useSubmit } from 'react-router';
 import { DeleteOutlined, PlusOutlined } from '@ant-design/icons';
 import { UserModel } from '../models/user';
 
@@ -32,12 +32,15 @@ const baseColumns: TableColumnProps[] = [
     }    
 ];
 
-export default function UserList() {    
+export default function UserList() {
+    const [api, ContextNotification] = notification.useNotification();
     const navigate = useNavigate();
+    const navigation = useNavigation();
     const submit = useSubmit();
 
     const data = useLoaderData<UserModel[]>();
 
+    const lastAction = useRef<string | undefined>('');
     const remove = useCallback((id: number) => {
         submit({ id }, { method: 'DELETE' });
     }, []);
@@ -67,8 +70,20 @@ export default function UserList() {
         navigate('/users/add');
     }
 
+    if(lastAction.current !== navigation.formMethod) {
+        if(lastAction.current === 'DELETE') {
+            api.info({
+                duration: 2,
+                message: 'User successfully removed!'
+            });
+        }
+
+        lastAction.current = navigation.formMethod;
+    }    
+
     return (
         <>
+            {ContextNotification}
             <Table 
                 columns={columns} 
                 dataSource={data} 
