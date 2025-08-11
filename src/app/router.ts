@@ -1,4 +1,4 @@
-import { createBrowserRouter, redirect } from 'react-router';
+import { createHashRouter, redirect } from 'react-router';
 import App from './App';
 import { createUser, getUser, getUsers, removeUser, updateUser } from '../api/users';
 import UserList from '../components/UserList';
@@ -6,7 +6,7 @@ import UserForm from '../components/UserForm';
 import WelcomeScreen from '../components/WelcomeScreen';
 import PageError from '../components/PageError';
 
-export default createBrowserRouter([
+export default createHashRouter([
     {
         path: '/',
         Component: App,

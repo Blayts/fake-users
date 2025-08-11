@@ -22,7 +22,7 @@ export async function getUser(id: number | string) {
 }
 
 export async function getUsers() {
-    const { users } = await fetching<{ users: Record<string, any>[] }>(fetch(BASE_API));
+    const { users } = await fetching<{ users: Record<string, any>[] }>(fetch(BASE_API + '?limit=30'));
     return users.map((user) => UserModel.fromJson(user));
 }
 
